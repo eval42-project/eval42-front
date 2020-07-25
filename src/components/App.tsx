@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
 
-import Logo from './atoms/Logo';
-import Landing from './pages/Landing';
 import history from '../history';
 import 'antd/dist/antd.css';
 import './App.css';
+import Logo from './atoms/Logo';
+import Landing from './pages/Landing';
+import Auth from './pages/Auth';
 
-const { Text, Link } = Typography;
+const { Link } = Typography;
 const { Header, Content, Footer } = Layout;
 const { Item } = Menu;
 
@@ -21,10 +22,10 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
-const App = () => {
-  const onMenuClick = (props: any) => {
-    console.log(props);
-    history.push(`/${props.key}`);
+export default function App(): React.ReactElement {
+  const onMenuClick = (menu: any) => {
+    console.log(menu);
+    history.push(`/${menu.key}`);
   };
 
   return (
@@ -43,8 +44,10 @@ const App = () => {
         <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64, minHeight: 'calc(100vh - 134px)' }}>
           <Switch>
             <Route path="/" exact component={Landing} />
+            <Route path="/auth" exact component={Auth} />
             <div className="site-layout-background" style={{ margin: '40px 0 0 0', padding: 24, minHeight: '100%' }}>
-              Content
+              <Route path="/profile">Content</Route>
+              New
             </div>
           </Switch>
         </Content>
@@ -56,6 +59,4 @@ const App = () => {
       </Layout>
     </Router>
   );
-};
-
-export default App;
+}
