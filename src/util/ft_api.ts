@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { FT_UID, FT_SECRET } from './constant';
-import { FRONT_URL, getOauthTokenUrl } from './routes';
+import { BACK_TOKEN } from './routes';
 
-export const getToken = async (code: string): Promise<string> => {
-  const respond = await axios.post(getOauthTokenUrl(code));
-  return respond.data.access_token;
+export const getToken = async (search: string): Promise<string> => {
+  const respond = await axios({
+    url: `${BACK_TOKEN}${search}`,
+    method: 'get',
+  });
+  return respond.data;
 };
 
 export const getUser = () => {};
