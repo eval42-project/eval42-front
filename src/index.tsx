@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import './index.css';
 import { createGlobalStyle } from 'styled-components';
 import App from 'components/App';
-// import store from './util/redux/store';
+import store from './util/redux/store';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -14,9 +14,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.render(
-  <>
+  <Provider store={store}>
     <GlobalStyle />
     <App />
-  </>,
+  </Provider>,
   document.getElementById('root')
 );

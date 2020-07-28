@@ -9,4 +9,5 @@ export const getToken = async (search: string): Promise<string> => {
   return respond.data;
 };
 
-export const getUser = () => {};
+// TODO: fetch user data by token
+export const getUser = async () => {};
