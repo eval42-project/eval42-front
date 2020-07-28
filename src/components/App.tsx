@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout, Menu, Typography } from 'antd';
 
-import history from '../history';
+import history from 'util/customHistory';
 import 'antd/dist/antd.css';
 import './App.css';
-import Logo from './atoms/Logo';
-import Landing from './pages/Landing';
-import Auth from './pages/Auth';
+import Logo from 'components/atoms/Logo';
+import Landing from 'components/pages/Landing';
+import Auth from 'components/pages/Auth';
 
 const { Link } = Typography;
 const { Header, Content, Footer } = Layout;

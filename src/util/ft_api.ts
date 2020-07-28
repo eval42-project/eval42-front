@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BACK_TOKEN } from './routes';
+import { BACK_TOKEN } from 'util/routes';
 
 export const getToken = async (search: string): Promise<string> => {
   const respond = await axios({

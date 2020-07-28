@@ -1,9 +1,10 @@
 import React from 'react';
 import { Typography, Button } from 'antd';
 import { CheckCircleTwoTone, LoginOutlined } from '@ant-design/icons';
-import { OAUTH_AUTHORIZE } from '../../util/routes';
 
-const { Title, Paragraph, Text } = Typography;
+import { OAUTH_AUTHORIZE } from 'util/routes';
+
+const { Title } = Typography;
 
 export default function Landing(): React.ReactElement {
   return (

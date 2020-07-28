@@ -1,19 +1,15 @@
 import React from 'react';
 import { Typography } from 'antd';
 import { CheckCircleTwoTone } from '@ant-design/icons';
-import { ILogo } from './ILogo';
+import { ILogo } from 'components/atoms/ILogo';
 
 const { Title } = Typography;
 
-const Logo = ({ style }: ILogo) => {
+export default function Logo({ style }: ILogo): React.ReactElement {
   return (
-    <>
-      <Title level={2} style={style}>
-        <CheckCircleTwoTone twoToneColor="#52c41a" style={{ marginRight: '10px' }} />
-        Eval42
-      </Title>
-    </>
+    <Title level={2} style={style}>
+      <CheckCircleTwoTone twoToneColor="#52c41a" style={{ marginRight: '10px' }} />
+      Eval42
+    </Title>
   );
-};
-
-export default Logo;
+}
