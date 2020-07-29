@@ -3,22 +3,25 @@ import { Result, Typography } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 
-import history from 'util/customHistory';
-import { IAuth } from 'components/pages/IAuth';
+import { IAuth } from 'components/organisms/IAuth';
 import { getToken } from 'util/ft_api';
-import { submitToken } from 'util/redux/tokenSlice';
+import { setUserToken } from 'util/redux/userSlice';
+import { useHistory } from 'react-router-dom';
 
 const { Text } = Typography;
 
 export default function Auth({ location }: IAuth): React.ReactElement {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     const result = getToken(location.search);
     result.then((token) => {
-      dispatch(submitToken(token));
-      console.log(token); // test token
-      history.replace('/profile');
+      dispatch(setUserToken(token));
+      history.push({
+        pathname: '/profile',
+        search: '',
+      });
     });
   });
   return <Result icon={<LoadingOutlined />} title="Login in progress" extra={<Text>Please wait...</Text>} />;
