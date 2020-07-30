@@ -7,7 +7,7 @@ import 'antd/dist/antd.css';
 import Header from 'components/organisms/Header';
 import Landing from 'components/pages/Landing';
 import Profile from 'components/pages/Profile';
-import Auth from 'components/organisms/Auth';
+import Auth from 'components/pages/Auth';
 
 const { Link } = Typography;
 const { Content, Footer } = Layout;

@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 import './index.css';
 import { createGlobalStyle } from 'styled-components';
 import App from 'components/App';
-import store from './util/redux/store';
+import { store, persistor } from 'util/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -15,8 +16,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyle />
-    <App />
+    <PersistGate persistor={persistor}>
+      <GlobalStyle />
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );
