@@ -9,8 +9,9 @@ const initialState: Users = {
   id: 0,
   login: '',
   displayname: '',
-  image_url: '',
+  imageUrl: '',
   isCadet: false,
+  isLoading: false,
 };
 
 const userSlice = createSlice({
@@ -26,14 +27,19 @@ const userSlice = createSlice({
         id: 0,
         login: '',
         displayname: '',
-        image_url: '',
+        imageUrl: '',
         isCadet: false,
+        isLoading: false,
       };
     },
+    loadingUser(state) {
+      state.isLoading = true;
+    }
   },
 });
 
 export const setUserToken = (token: string): AppThunk => async (dispatch: AppDispatch) => {
+  dispatch(userSlice.actions.loadingUser());
   const newUser = getUser(token);
   dispatch(userSlice.actions.setUserToken(await newUser));
 };

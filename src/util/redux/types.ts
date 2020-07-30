@@ -3,6 +3,7 @@ export interface Users {
   id: number;
   login: string;
   displayname: string;
-  image_url: string;
+  imageUrl: string;
   isCadet: boolean;
+  isLoading: boolean;
 }

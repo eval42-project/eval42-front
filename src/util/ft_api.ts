@@ -20,13 +20,14 @@ export const getUser = async (token: string): Promise<Users> => {
     },
   });
   const respondObject = respond.data;
-  const isCadet = respondObject.cursus_users.length;
+  const isCadet = (respondObject.cursus_users.length !== 1);
   return {
     token,
     id: parseInt(respondObject.id),
     login: respondObject.login,
     displayname: respondObject.displayname,
-    image_url: respondObject.image_url,
+    imageUrl: respondObject.image_url,
     isCadet,
+    isLoading: false,
   };
 };

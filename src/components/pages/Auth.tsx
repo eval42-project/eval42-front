@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
-import { Result, Typography } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 
-import { IAuth } from 'components/organisms/IAuth';
+import { IAuth } from 'components/pages/IAuth';
 import { getToken } from 'util/ft_api';
 import { setUserToken } from 'util/redux/userSlice';
 import { useHistory } from 'react-router-dom';
-
-const { Text } = Typography;
+import LoginLoading from 'components/organisms/LoginLoading';
 
 export default function Auth({ location }: IAuth): React.ReactElement {
   const dispatch = useDispatch();
@@ -24,5 +21,5 @@ export default function Auth({ location }: IAuth): React.ReactElement {
       });
     });
   });
-  return <Result icon={<LoadingOutlined />} title="Login in progress" extra={<Text>Please wait...</Text>} />;
+  return <LoginLoading />;
 }
