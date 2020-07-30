@@ -1,6 +1,7 @@
 import axios from 'axios';
+
 import { BACK_TOKEN, FTAPI_ME } from 'util/routes';
-import { Users } from './redux/types';
+import { Users } from 'util/redux/types';
 
 export const getToken = async (search: string): Promise<string> => {
   const respond = await axios({
@@ -10,7 +11,6 @@ export const getToken = async (search: string): Promise<string> => {
   return respond.data;
 };
 
-// TODO: fetch user data by token
 export const getUser = async (token: string): Promise<Users> => {
   const respond = await axios({
     url: FTAPI_ME,
@@ -20,10 +20,10 @@ export const getUser = async (token: string): Promise<Users> => {
     },
   });
   const respondObject = respond.data;
-  const isCadet = (respondObject.cursus_users.length !== 1);
+  const isCadet = respondObject.cursus_users.length !== 1;
   return {
     token,
-    id: parseInt(respondObject.id),
+    id: parseInt(respondObject.id, 10),
     login: respondObject.login,
     displayname: respondObject.displayname,
     imageUrl: respondObject.image_url,

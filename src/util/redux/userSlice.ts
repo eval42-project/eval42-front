@@ -32,9 +32,17 @@ const userSlice = createSlice({
         isLoading: false,
       };
     },
-    loadingUser(state) {
-      state.isLoading = true;
-    }
+    loadingUser() {
+      return {
+        token: '',
+        id: 0,
+        login: '',
+        displayname: '',
+        imageUrl: '',
+        isCadet: false,
+        isLoading: true,
+      };
+    },
   },
 });
 

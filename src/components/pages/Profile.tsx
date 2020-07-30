@@ -1,12 +1,12 @@
 import React from 'react';
-import { Typography, Avatar } from 'antd';
-import styled from 'styled-components';
-
 import { useSelector } from 'react-redux';
-import { RootState } from 'util/redux/rootReducer';
+import styled from 'styled-components';
+import { Typography, Avatar } from 'antd';
+
 import Login from 'components/organisms/Login';
-import { Users } from 'util/redux/types';
 import LoginLoading from 'components/organisms/LoginLoading';
+import { RootState } from 'util/redux/rootReducer';
+import { Users } from 'util/redux/types';
 
 const { Title } = Typography;
 

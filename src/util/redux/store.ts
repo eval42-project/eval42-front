@@ -1,8 +1,8 @@
 import { configureStore, Action } from '@reduxjs/toolkit';
 import { ThunkAction } from 'redux-thunk';
-
-import rootReducer, { RootState } from './rootReducer';
 import { persistStore } from 'redux-persist';
+
+import rootReducer, { RootState } from 'util/redux/rootReducer';
 
 export const store = configureStore({
   reducer: rootReducer,

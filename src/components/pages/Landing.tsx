@@ -1,10 +1,10 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { Typography, Button } from 'antd';
 import { CheckCircleTwoTone, LoginOutlined } from '@ant-design/icons';
 
 import { OAUTH_AUTHORIZE } from 'util/routes';
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'util/redux/rootReducer';
 import { removeUserToken } from 'util/redux/userSlice';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './index.css';
+import { PersistGate } from 'redux-persist/integration/react';
 import { createGlobalStyle } from 'styled-components';
+
 import App from 'components/App';
 import { store, persistor } from 'util/redux/store';
-import { PersistGate } from 'redux-persist/integration/react';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
