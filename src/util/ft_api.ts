@@ -33,7 +33,7 @@ export const getUser = async (token: string): Promise<Users> => {
   };
 };
 
-export const createSlot = async (user: Users, date: moment.Moment, timeRange: string[]) => {
+export const createSlot = async (user: Users, date: moment.Moment, timeRange: string[]): Promise<void> => {
   const dateFormatted = date.format('YYYY-MM-DD');
   const respond = await axios({
     url: FTAPI_SLOT,
@@ -49,5 +49,5 @@ export const createSlot = async (user: Users, date: moment.Moment, timeRange: st
       },
     },
   });
-  console.log(respond);
+  return respond.data;
 };

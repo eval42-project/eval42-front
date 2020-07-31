@@ -34,15 +34,6 @@ export default function Slot(): React.ReactElement {
   const [date, setDate] = useState(nowMoment);
   const [timeRange, setTimeRange] = useState(['', '']);
 
-  const onDateChange = (changeDate: moment.Moment | null, dateString: string) => {
-    setDate(changeDate!);
-  };
-
-  const onTimeRangeChange = (values: MomentRange | null, formatString: string[]) => {
-    console.log(formatString);
-    setTimeRange(formatString);
-  };
-
   const disabledHours = () => (date.isSame(nowMoment, 'day') ? Array.from(Array(nowMoment.hour()).keys()) : []);
 
   const disabledMinutes = (hour: number) =>
@@ -50,8 +41,7 @@ export default function Slot(): React.ReactElement {
 
   const onButtonClick = () => {
     message.loading('Creating slots...');
-    createSlot(user, date, timeRange)
-      .then(() => message.success('Creating slots complete!'));
+    createSlot(user, date, timeRange).then(() => message.success('Creating slots complete!'));
   };
 
   if (user.isLoading) return <LoginLoading />;
@@ -62,13 +52,18 @@ export default function Slot(): React.ReactElement {
         {' '}
         <PlusCircleOutlined /> Create Slot
       </Title>
-      <DatePicker onChange={onDateChange} disabledDate={disabledDate} defaultValue={moment()} size="large" />
+      <DatePicker
+        onChange={(changeDate: moment.Moment | null) => setDate(changeDate!)}
+        disabledDate={disabledDate}
+        defaultValue={moment()}
+        size="large"
+      />
       <RangePicker
         picker="time"
         format="HH:mm"
         minuteStep={15}
         size="large"
-        onChange={onTimeRangeChange}
+        onChange={(_v: MomentRange | null, formatString: string[]) => setTimeRange(formatString)}
         disabledHours={disabledHours}
         disabledMinutes={disabledMinutes}
       />
@@ -76,7 +71,9 @@ export default function Slot(): React.ReactElement {
         Create
       </Button>
       <Title level={4} style={{ marginTop: '10px' }}>
-        <Link href="https://profile.intra.42.fr/slots" target="_blank">Intra Slot Page</Link>
+        <Link href="https://profile.intra.42.fr/slots" target="_blank">
+          Intra Slot Page
+        </Link>
       </Title>
       <Divider style={{ borderTopColor: '#cccccc' }} />
       <Title level={4}>

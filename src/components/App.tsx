@@ -8,8 +8,9 @@ import Header from 'components/organisms/Header';
 import Landing from 'components/pages/Landing';
 import Profile from 'components/pages/Profile';
 import Auth from 'components/pages/Auth';
-import { PROFILE, AUTH, SLOT } from 'util/routes';
-import Slot from './pages/Slot';
+import Slot from 'components/pages/Slot';
+import Forum from 'components/pages/Forum';
+import { PROFILE, AUTH, SLOT, FORUM } from 'util/routes';
 
 const { Link } = Typography;
 const { Content, Footer } = Layout;
@@ -30,6 +31,7 @@ export default function App(): React.ReactElement {
             <Route path="/" exact component={Landing} />
             <Route path={PROFILE} exact component={Profile} />
             <Route path={SLOT} exact component={Slot} />
+            <Route path={FORUM} exact component={Forum} />
             <Route path={AUTH} exact component={Auth} />
           </Switch>
         </MainContent>

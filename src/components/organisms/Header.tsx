@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, message } from 'antd';
 
 import 'antd/dist/antd.css';
 import Logo from 'components/atoms/Logo';
@@ -30,6 +30,7 @@ export default function CustomHeader(): React.ReactElement {
     if (menu.key === 'logout') {
       dispatch(removeUserToken());
       history.push('/');
+      message.success('Logout successfully!');
     } else history.push(`/${menu.key}`);
   };
 
