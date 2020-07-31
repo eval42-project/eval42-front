@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Typography, Button } from 'antd';
+import { Typography, Button, message } from 'antd';
 import { CheckCircleTwoTone, LoginOutlined } from '@ant-design/icons';
 
 import { OAUTH_AUTHORIZE } from 'util/routes';
@@ -44,7 +44,10 @@ export default function Landing(): React.ReactElement {
             shape="round"
             icon={<LoginOutlined />}
             size="large"
-            onClick={() => dispatch(removeUserToken())}
+            onClick={() => {
+              dispatch(removeUserToken());
+              message.success('Logout successfully!');
+            }}
           >
             Logout
           </Button>
