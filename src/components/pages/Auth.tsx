@@ -6,6 +6,7 @@ import { IAuth } from 'components/pages/IAuth';
 import LoginLoading from 'components/organisms/LoginLoading';
 import { getToken } from 'util/ft_api';
 import { setUserToken } from 'util/redux/userSlice';
+import { PROFILE } from 'util/routes';
 
 export default function Auth({ location }: IAuth): React.ReactElement {
   const dispatch = useDispatch();
@@ -16,10 +17,11 @@ export default function Auth({ location }: IAuth): React.ReactElement {
     result.then((token) => {
       dispatch(setUserToken(token));
       history.push({
-        pathname: '/profile',
+        pathname: PROFILE,
         search: '',
       });
     });
   });
+
   return <LoginLoading />;
 }

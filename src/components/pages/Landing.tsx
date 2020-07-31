@@ -11,7 +11,7 @@ import { removeUserToken } from 'util/redux/userSlice';
 const { Title } = Typography;
 
 const LandingContainer = styled.div`
-  min-height: 100vh;
+  height: calc(100vh - 234px);
   display: flex;
   flex-direction: column;
   justify-content: center;

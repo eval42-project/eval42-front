@@ -11,7 +11,7 @@ export default function Login(): React.ReactElement {
       title="You need to login first before access this page"
       extra={
         <a href={OAUTH_AUTHORIZE}>
-          <Button type="primary" shape="round" icon={<LoginOutlined />} size="large">
+          <Button type="primary" shape="round" size="large" icon={<LoginOutlined />}>
             Login with 42
           </Button>
         </a>
