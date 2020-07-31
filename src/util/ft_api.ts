@@ -1,6 +1,7 @@
 import axios from 'axios';
+import moment from 'moment';
 
-import { BACK_TOKEN, FTAPI_ME } from 'util/routes';
+import { BACK_TOKEN, FTAPI_ME, FTAPI_SLOT } from 'util/routes';
 import { Users } from 'util/redux/types';
 
 export const getToken = async (search: string): Promise<string> => {
@@ -30,4 +31,23 @@ export const getUser = async (token: string): Promise<Users> => {
     isCadet,
     isLoading: false,
   };
+};
+
+export const createSlot = async (user: Users, date: moment.Moment, timeRange: string[]) => {
+  const dateFormatted = date.format('YYYY-MM-DD');
+  const respond = await axios({
+    url: FTAPI_SLOT,
+    method: 'post',
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+    data: {
+      slot: {
+        user_id: user.id,
+        begin_at: `${dateFormatted}T${timeRange[0]}+09:00`,
+        end_at: `${dateFormatted}T${timeRange[1]}+09:00`,
+      },
+    },
+  });
+  console.log(respond);
 };

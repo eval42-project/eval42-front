@@ -8,12 +8,14 @@ import Header from 'components/organisms/Header';
 import Landing from 'components/pages/Landing';
 import Profile from 'components/pages/Profile';
 import Auth from 'components/pages/Auth';
+import { PROFILE, AUTH, SLOT } from 'util/routes';
+import Slot from './pages/Slot';
 
 const { Link } = Typography;
 const { Content, Footer } = Layout;
 
 const MainContent = styled(Content)`
-  padding: 0 50px;
+  padding: 50px;
   margin-top: 64px;
   min-height: calc(100vh - 134px);
 `;
@@ -26,8 +28,9 @@ export default function App(): React.ReactElement {
         <MainContent>
           <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/auth" exact component={Auth} />
+            <Route path={PROFILE} exact component={Profile} />
+            <Route path={SLOT} exact component={Slot} />
+            <Route path={AUTH} exact component={Auth} />
           </Switch>
         </MainContent>
         <Footer style={{ textAlign: 'center' }}>
