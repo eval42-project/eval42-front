@@ -1,4 +1,4 @@
-import { FT_UID } from './constant';
+import FT_UID from 'util/constant';
 
 export const FRONT_URL = process.env.REACT_APP_FRONT_URL;
 
