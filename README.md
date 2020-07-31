@@ -13,7 +13,7 @@ This Project is build with [CRA](https://github.com/facebook/create-react-app) a
 <br>
 
 ## 💻 How to Run
-Before you run, you need to create .env file for some constants. Check [.env.sample] for detail. Setting simple backend server, see [simple-42api-oauth](https://github.com/cos18/simple-42api-oauth).
+Before you run, you need to create .env file for some constants. Check [.env.sample](.env.sample) for detail. Setting simple backend server, see [simple-42api-oauth](https://github.com/cos18/simple-42api-oauth).
 
 #### 🏡 Start Project in Local
 ```bash
