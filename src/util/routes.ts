@@ -13,6 +13,6 @@ export const BACK_TOKEN = `${BACK_URL}/token`;
 const FTAPI_URL = 'https://api.intra.42.fr';
 export const OAUTH = `${FTAPI_URL}/oauth`;
 export const OAUTH_AUTHORIZE = `${OAUTH}/authorize?client_id=${FT_UID}&redirect_uri=${FRONT_URL}${AUTH}&response_type=code&scope=public+projects+profile`;
-const FTAPI_V2 = `${FTAPI_URL}/v2`;
+const FTAPI_V2 = process.env.NODE_ENV !== 'production' ? `${FTAPI_URL}/v2` : `${FRONT_URL}/api/v2`;
 export const FTAPI_ME = `${FTAPI_V2}/me`;
 export const FTAPI_SLOT = `${FTAPI_V2}/slots`;
