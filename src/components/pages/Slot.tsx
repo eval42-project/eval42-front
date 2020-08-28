@@ -38,7 +38,12 @@ export default function Slot(): React.ReactElement {
       return;
     }
     message.loading('Creating slots...');
-    createSlot(user, date, timeRange).then(() => message.success('Creating slots complete!'));
+    try {
+      createSlot(user, date, timeRange).then(() => message.success('Creating slots complete!'));
+    } catch (err) {
+      message.error('Creating slots failed!');
+      console.log(err);
+    }
   };
 
   if (user.isLoading) return <LoginLoading />;
