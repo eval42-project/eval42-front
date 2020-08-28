@@ -10,6 +10,14 @@ import LoginLoading from 'components/organisms/LoginLoading';
 import { RootState } from 'util/redux/rootReducer';
 import { Users } from 'util/redux/types';
 import { createSlot } from 'util/ft_api';
+import {
+  MomentRange,
+  disabledHours,
+  disabledMinutes,
+  disabledDate,
+  getLimitMoment,
+  isTimeRangeValid,
+} from 'util/SlotControl';
 
 const { Title, Text, Link } = Typography;
 const { RangePicker } = TimePicker;
@@ -19,29 +27,23 @@ const SlotContainer = styled.div`
   padding: 0 20px;
 `;
 
-const disabledDate = (current: moment.Moment) => {
-  return (
-    current &&
-    (current < moment().subtract(1, 'days').endOf('day') || moment().add(14, 'days').startOf('day') < current)
-  );
-};
-
-type MomentRange = [moment.Moment | null, moment.Moment | null];
-
 export default function Slot(): React.ReactElement {
-  const nowMoment = moment();
   const user: Users = useSelector((state: RootState) => state.user);
-  const [date, setDate] = useState(nowMoment);
+  const [date, setDate] = useState(moment());
   const [timeRange, setTimeRange] = useState(['', '']);
 
-  const disabledHours = () => (date.isSame(nowMoment, 'day') ? Array.from(Array(nowMoment.hour()).keys()) : []);
-
-  const disabledMinutes = (hour: number) =>
-    date.isSame(nowMoment, 'day') && date.hour() === hour ? Array.from(Array(nowMoment.minute()).keys()) : [];
-
   const onButtonClick = () => {
+    if (!isTimeRangeValid(timeRange)) {
+      message.error('Time is not vaild. Check slot form!');
+      return;
+    }
     message.loading('Creating slots...');
-    createSlot(user, date, timeRange).then(() => message.success('Creating slots complete!'));
+    try {
+      createSlot(user, date, timeRange).then(() => message.success('Creating slots complete!'));
+    } catch (err) {
+      message.error('Creating slots failed!');
+      console.log(err);
+    }
   };
 
   if (user.isLoading) return <LoginLoading />;
@@ -55,7 +57,7 @@ export default function Slot(): React.ReactElement {
       <DatePicker
         onChange={(changeDate: moment.Moment | null) => setDate(changeDate!)}
         disabledDate={disabledDate}
-        defaultValue={moment()}
+        defaultValue={getLimitMoment()}
         size="large"
       />
       <RangePicker
@@ -64,8 +66,8 @@ export default function Slot(): React.ReactElement {
         minuteStep={15}
         size="large"
         onChange={(_v: MomentRange | null, formatString: string[]) => setTimeRange(formatString)}
-        disabledHours={disabledHours}
-        disabledMinutes={disabledMinutes}
+        disabledHours={() => disabledHours(date)}
+        disabledMinutes={(hour: number) => disabledMinutes(hour, date)}
       />
       <Button type="primary" size="large" onClick={onButtonClick}>
         Create
