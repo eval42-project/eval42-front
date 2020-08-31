@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -27,29 +27,29 @@ export default function LandingHeader(): React.ReactElement {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onMenuClick = (menu: MenuInfo) => {
-    if (menu.key === 'logout') {
-      dispatch(removeUserToken());
-      history.push('/');
-      message.success('Logout successfully!');
-    } else history.push(menu.key as string);
+  const [selectedKey, setSelectedKey] = useState(history.location.pathname);
+
+  const goToLanding = () => {
+    setSelectedKey('/');
+    history.push('/');
   };
 
-  const onLogoClick = () => {
-    history.push('/');
+  const onMenuClick = ({ key }: MenuInfo) => {
+    if (typeof key === 'number') throw new Error('Key of menu is not string');
+    setSelectedKey(key);
+    if (key === 'logout') {
+      dispatch(removeUserToken());
+      goToLanding();
+      message.success('Logout successfully!');
+    } else history.push(key);
   };
 
   return (
     <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
       <LogoContainer>
-        <Logo onClick={onLogoClick} />
+        <Logo onClick={goToLanding} />
       </LogoContainer>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={[history.location.pathname.substring(1)]}
-        onClick={onMenuClick}
-      >
+      <Menu theme="dark" mode="horizontal" selectedKeys={[selectedKey]} onClick={onMenuClick}>
         <Item key={PROFILE}>Profile</Item>
         <Item key={SLOT}>Slot</Item>
         <Item key={FORUM}>Forum</Item>
