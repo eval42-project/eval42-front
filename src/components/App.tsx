@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Layout, Typography } from 'antd';
 
 import 'antd/dist/antd.css';
-import Header from 'components/organisms/Header';
+import LandingHeader from 'components/organisms/LandingHeader';
 import Landing from 'components/pages/Landing';
 import Profile from 'components/pages/Profile';
 import Auth from 'components/pages/Auth';
@@ -25,7 +25,7 @@ export default function App(): React.ReactElement {
   return (
     <Router>
       <Layout>
-        <Header />
+        <LandingHeader />
         <MainContent>
           <Switch>
             <Route path="/" exact component={Landing} />

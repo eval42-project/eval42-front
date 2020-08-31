@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Layout, Menu, message } from 'antd';
+import { MenuInfo } from 'rc-menu/lib/interface';
 
 import 'antd/dist/antd.css';
 import Logo from 'components/atoms/Logo';
 import { removeUserToken } from 'util/redux/userSlice';
 import { RootState } from 'util/redux/rootReducer';
+import { PROFILE, SLOT, FORUM } from 'util/routes';
 
 const { Header } = Layout;
 const { Item } = Menu;
@@ -20,18 +22,17 @@ const LogoContainer = styled.div`
   align-items: center;
 `;
 
-export default function CustomHeader(): React.ReactElement {
+export default function LandingHeader(): React.ReactElement {
   const user = useSelector((state: RootState) => state.user);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onMenuClick = (menu: any) => {
+  const onMenuClick = (menu: MenuInfo) => {
     if (menu.key === 'logout') {
       dispatch(removeUserToken());
       history.push('/');
       message.success('Logout successfully!');
-    } else history.push(`/${menu.key}`);
+    } else history.push(menu.key as string);
   };
 
   const onLogoClick = () => {
@@ -49,9 +50,9 @@ export default function CustomHeader(): React.ReactElement {
         defaultSelectedKeys={[history.location.pathname.substring(1)]}
         onClick={onMenuClick}
       >
-        <Item key="profile">Profile</Item>
-        <Item key="slot">Slot</Item>
-        <Item key="forum">Forum</Item>
+        <Item key={PROFILE}>Profile</Item>
+        <Item key={SLOT}>Slot</Item>
+        <Item key={FORUM}>Forum</Item>
         {user.id !== 0 && <Item key="logout">Logout</Item>}
       </Menu>
     </Header>
