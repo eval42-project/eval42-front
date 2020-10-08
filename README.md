@@ -1,6 +1,10 @@
 <h1 align="center">✅ Eval42</h1>
 <h4 align="center">Evaluation Helper @ 42Seoul</h4>
 
+<br>
+
+<p align="center"><image src="./images/eval42.png"></p>
+
 This Project is build with [CRA](https://github.com/facebook/create-react-app) and ❤️
 
 <br>
