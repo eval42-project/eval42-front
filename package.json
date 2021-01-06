@@ -13,7 +13,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1",
     "antd": "^4.4.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "history": "^5.0.0",
     "moment": "^2.27.0",
     "rc-menu": "^8.5.3",
